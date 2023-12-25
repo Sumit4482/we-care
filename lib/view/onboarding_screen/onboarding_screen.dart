@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:we_care/view/login_signup_screen/login_screen.dart';
 import 'package:we_care/view/login_signup_screen/signup_screen.dart';
 
@@ -15,16 +17,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   List<Widget> get _pages => [
         const OnboardingPage(
-          title: 'Page 1 Title',
-          description: 'Page 1 Description',
+          path: "assets/p1.png",
+          title: 'Welcome to We Care!',
+          description: 'Empowering the golden years with technology',
         ),
         const OnboardingPage(
-          title: 'Page 2 Title',
-          description: 'Page 2 Description',
+          path: "assets/p2.png",
+          title: 'Never Miss a Dose',
+          description: 'Personalized medicine reminders tailored just for you.',
         ),
         OnboardingPageWithButtons(
-          title: 'Page 3 Title',
-          description: 'Page 3 Description',
+          path: "assets/p3.png",
+          title: 'Wellness Tips Every Day',
+          description:
+              'Access a wealth of daily health tips to boost your well-being.',
           onLoginPressed: () {
             _navigateToLogin();
           },
@@ -130,11 +136,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 class OnboardingPage extends StatelessWidget {
   final String title;
   final String description;
+  final String path;
 
   const OnboardingPage({
     Key? key,
     required this.title,
     required this.description,
+    required this.path,
   }) : super(key: key);
 
   @override
@@ -146,6 +154,12 @@ class OnboardingPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 30),
+          Container(
+            width: 100,
+            height: 100,
+            child: Image.asset(path),
+          ),
+          const SizedBox(height: 20),
           Text(
             title,
             style: const TextStyle(
@@ -170,6 +184,7 @@ class OnboardingPageWithButtons extends StatelessWidget {
   final String description;
   final VoidCallback onLoginPressed;
   final VoidCallback onSignupPressed;
+  final String path;
 
   const OnboardingPageWithButtons({
     Key? key,
@@ -177,6 +192,7 @@ class OnboardingPageWithButtons extends StatelessWidget {
     required this.description,
     required this.onLoginPressed,
     required this.onSignupPressed,
+    required this.path,
   }) : super(key: key);
 
   @override
@@ -188,6 +204,8 @@ class OnboardingPageWithButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 30),
+          Container(width: 100, height: 100, child: Image.asset(path)),
+          const SizedBox(height: 20),
           Text(
             title,
             style: const TextStyle(
